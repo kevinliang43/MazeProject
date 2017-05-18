@@ -2,13 +2,20 @@
  * Created by KevinLiang on 5/17/17.
  */
 
-// represents abstract class ANode
+/**
+ * Represents an Abstract Node Class
+ * @param <T> what the class is generic over.
+ */
 public abstract class ANode<T> {
   ANode<T> next;
   ANode<T> prev;
 
 
-  // count the number of nodes in this Deque without Sentinel
+  /**
+   * count the number of nodes in this Deque, excluding the Sentinel
+   * @param acc accumulator to keep track of the number of nodes.
+   * @return integer representing the number of nodes in the Deque.
+   */
   public int countNodes(int acc) {
     if (this.next.isSentinel()) {
       return acc;
@@ -18,40 +25,59 @@ public abstract class ANode<T> {
     }
   }
 
-  // Helper for find method
+  /**
+   * Helper method for the find function
+   * @param pred the predicate determining whether or not this is Node has correct values
+   * @return Default, returns this node.
+   */
   ANode<T> findHelp(IPred<T> pred) {
     return this;
   }
 
-  // is this node a sentinel?
+  /**
+   * is this Node a Sentinel?
+   * @return Boolean. Deafult, this node is not a sentinel.
+   */
   public boolean isSentinel() {
     return false;
   }
 
-  //EFFECT:
-  //change this nodes next to the given ANode
+  /**
+   * Changes this node's next, to a given node.
+   * @param that represents the new 'next' node.
+   */
   void changeNext(ANode<T> that) {
     this.next = that;
   }
 
-  //EFFECT:
-  //change this nodes next to the given ANode
+  /**
+   * Changes this node's previous node to a given node.
+   * @param that represents this node's new Previous node.
+   */
   void changePrev(ANode<T> that) {
     this.prev = that;
   }
 
-  //EFFECT:
-  //remove this ANode from the list
+  /**
+   * Removes this node from the Deque.
+   */
   void removeThis() {
     this.next.changePrev(this.prev);
     this.prev.changeNext(this.next);
   }
 
-  // return this as a Node
+  /**
+   * Return this as a Node.
+   * @return Defaults as "this isn't a node"
+   */
   DNode<T> asNode() {
     throw new RuntimeException("This isn't a Node");
   }
 
-  // return this if it matches the given conditions, otherwise recurse
+  /**
+   * Returns this Node, if given conditions are met.
+   * @param item item to compare to this.
+   * @return boolean representing whether or not conditions are met.
+   */
   abstract boolean containsHelper(T item);
 }
