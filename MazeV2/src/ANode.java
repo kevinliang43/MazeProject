@@ -4,6 +4,7 @@
 
 /**
  * Represents an Abstract Node Class
+ *
  * @param <T> what the class is generic over.
  */
 public abstract class ANode<T> {
@@ -13,20 +14,21 @@ public abstract class ANode<T> {
 
   /**
    * count the number of nodes in this Deque, excluding the Sentinel
+   *
    * @param acc accumulator to keep track of the number of nodes.
    * @return integer representing the number of nodes in the Deque.
    */
   public int countNodes(int acc) {
     if (this.next.isSentinel()) {
       return acc;
-    }
-    else {
+    } else {
       return this.next.countNodes(1 + acc);
     }
   }
 
   /**
    * Helper method for the find function
+   *
    * @param pred the predicate determining whether or not this is Node has correct values
    * @return Default, returns this node.
    */
@@ -36,6 +38,7 @@ public abstract class ANode<T> {
 
   /**
    * is this Node a Sentinel?
+   *
    * @return Boolean. Deafult, this node is not a sentinel.
    */
   public boolean isSentinel() {
@@ -44,6 +47,7 @@ public abstract class ANode<T> {
 
   /**
    * Changes this node's next, to a given node.
+   *
    * @param that represents the new 'next' node.
    */
   void changeNext(ANode<T> that) {
@@ -52,6 +56,7 @@ public abstract class ANode<T> {
 
   /**
    * Changes this node's previous node to a given node.
+   *
    * @param that represents this node's new Previous node.
    */
   void changePrev(ANode<T> that) {
@@ -68,6 +73,7 @@ public abstract class ANode<T> {
 
   /**
    * Return this as a Node.
+   *
    * @return Defaults as "this isn't a node"
    */
   DNode<T> asNode() {
@@ -76,6 +82,7 @@ public abstract class ANode<T> {
 
   /**
    * Returns this Node, if given conditions are met.
+   *
    * @param item item to compare to this.
    * @return boolean representing whether or not conditions are met.
    */

@@ -2,51 +2,94 @@
  * Created by KevinLiang on 5/17/17.
  */
 
-// represents class deque
+/**
+ * Class to represent a Deque data structure.
+ *
+ * @param <T> What this Deque is generic over.
+ */
 public class Deque<T> {
-  Sentinel<T> header;
+  Sentinel<T> header; // serves as the "beginning" of the deque.
 
+  // Constructor
   Deque() {
     this.header = new Sentinel<T>();
   }
 
+  // Convinience Constructor.
   Deque(Sentinel<T> header) {
     this.header = header;
   }
 
-  // returns the size of the deck not counting the header
+  /**
+   * Returns the size of this deque.
+   *
+   * @return integer representing the number of items in this deque.
+   */
   int size() {
     return header.countNodes(0);
   }
 
-  // adds value T to the head of the Deque
+  /**
+   * Add an item to the head of the deque.
+   *
+   * @param v item to be added
+   */
   void addAtHead(T v) {
     header.addAtHead(v);
   }
 
-  // adds value T to the tail of the Deque
+  /**
+   * Add an item to the tail of the deque.
+   *
+   * @param v item to be added.
+   */
   void addAtTail(T v) {
     header.addAtTail(v);
   }
-  // removes the first node from this deque and throws runtime exception if empty
+
+  /**
+   * Removes the item at the head of the deque.
+   *
+   * @return the item removed.
+   */
   T removeFromHead() {
     return header.removeFromHead();
   }
 
-  // removes the last node from this deque and throws runtime exception if empty
+  /**
+   * Removes the item at the tail of the deque.
+   *
+   * @return the item removed.
+   */
   T removeFromTail() {
     return header.removeFromTail();
   }
-  // find node
+
+  /**
+   * Finds a node that matches the conditions of a given Predicate.
+   *
+   * @param pred represents the conditions that a Node must meet to be "found"
+   * @return the Node found.
+   */
   ANode<T> find(IPred<T> pred) {
     return this.header.find(pred);
   }
-  // remove node
+
+  /**
+   * Given a node, searches the deque, and removes the node if found.
+   *
+   * @param n node to be removed.
+   */
   void removeNode(ANode<T> n) {
     this.find(new IsTargetNode<T>(n)).removeThis();
   }
 
-  // determines if the deque contains T
+  /**
+   * Checks to see if this deque contains a given item.
+   *
+   * @param item item to be found.
+   * @return boolean representing whether or not the item has been found.
+   */
   boolean contains(T item) {
     return this.header.contains(item);
   }
