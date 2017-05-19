@@ -2,9 +2,16 @@
  * Created by KevinLiang on 5/17/17.
  */
 
-//is this given integer even value?
+/**
+ * Predicate class for checking for Even integers.
+ */
 public class IsEven implements IPred<Integer> {
-  //is the given integer even value?
+  /**
+   * Is the given Integer even?
+   *
+   * @param n Integer to be checked.
+   * @return boolean representing whether or not the given integer is even.
+   */
   public boolean apply(Integer n) {
     return n % 2 == 0;
   }
