@@ -6,20 +6,23 @@
  * Edge class. Edge is created by two nodes.
  */
 public class Edge implements Comparable<Edge> {
-  // represent nodes that constitute an edge.
+  // Nodes that constitute this edge.
   Node a;
   Node b;
-  // weight of the edge
+  // weight of the edge. To be used for sorting.
   int weight;
 
-  // constructor for the edge class.
+  /**
+   * Constructor for this Edge.
+   * @param a Represents 1 node that constitute this edge.
+   * @param b Represents the other node that constitute this edge.
+   * @param weight the weight given to this edge.
+   */
   Edge(Node a, Node b, int weight) {
     this.a = a;
     this.b = b;
     this.weight = weight;
   }
-
-  // comparator for Collections.sort()
 
   /**
    * function to return a comparator for edge weights.
