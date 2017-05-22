@@ -23,9 +23,9 @@ public class Maze extends World {
 
   // Constants: use to change game size
   // Maze width (up to 100 cells wide)
-  static final int MAZE_WIDTH = 10;
+  static int MAZE_WIDTH = 10;
   // Maze height (up to 60 cells long)
-  static final int MAZE_HEIGHT = 10;
+  static int MAZE_HEIGHT = 10;
   // defines the cell dimensions (in pixels). Auto-calibrates.
   static final int CELL_SIZE =
           Math.min(900 / Maze.MAZE_HEIGHT, 1500 / Maze.MAZE_WIDTH);
@@ -61,8 +61,53 @@ public class Maze extends World {
   // length of the dfs search
   int dfsLength;
 
-  // constructor
+  /**
+   * Constructor for the Maze class.
+   */
   Maze() {
+    this.row = MAZE_HEIGHT;
+    this.col = MAZE_WIDTH;
+    this.nCells = MAZE_WIDTH * MAZE_HEIGHT;
+
+    this.initMaze();
+    this.initRep();
+    this.initWorkList();
+    this.initMazeList();
+    this.kruskalAlgo();
+    this.makePath();
+    cameFromEdge = new HashMap<Node, Node>();
+    p1 = new Player(0, 0, 0);
+    shortestPath = new ArrayList<Node>();
+    visited = new ArrayList<Node>();
+    this.time = 0;
+    togglePath = false;
+    toggleSearch = 0;
+    this.bfs(this.maze.get(0).get(0),
+            this.maze.get(Maze.MAZE_HEIGHT - 1).get(
+                    Maze.MAZE_WIDTH - 1));
+    bfsLength = this.visited.size();
+    this.constructShortestPath();
+    this.dfs(this.maze.get(0).get(0),
+            this.maze.get(Maze.MAZE_HEIGHT - 1).get(
+                    Maze.MAZE_WIDTH - 1));
+    dfsLength = this.visited.size();
+  }
+
+  Maze(int height, int width) {
+
+    if (height > 60 || height <= 0) {
+      throw new IllegalArgumentException("Maze must have a height greater than 0 and less than " +
+              "or equal to 60 units. ");
+    }
+
+    if (width > 100 || width <= 0) {
+      throw new IllegalArgumentException("Maze must have a width greater than 0 and less than" +
+              "or equal to 100 units. ");
+    }
+
+    this.MAZE_HEIGHT = height;
+    this.MAZE_WIDTH = width;
+
     this.row = MAZE_HEIGHT;
     this.col = MAZE_WIDTH;
     this.nCells = MAZE_WIDTH * MAZE_HEIGHT;

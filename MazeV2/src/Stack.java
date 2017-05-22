@@ -3,8 +3,6 @@
  */
 
 
-
-
 /**
  * My implementation of a Stack data structure.
  * @param <T> type of item which the stack is generic over.
@@ -16,17 +14,26 @@ public class Stack<T> implements ICollection<T> {
     this.contents = new Deque<T>();
   }
 
-  // adds an item to the head of the list
+  /**
+   * Add an item to the top of this Stack.
+   * @param item the item to be added.
+   */
   public void add(T item) {
     contents.addAtHead(item);
   }
 
-  // determines if the stack is empty
+  /**
+   * Is this Stack Empty or not?
+   * @return a boolean representing whether this stack is empty.
+   */
   public boolean isEmpty() {
     return contents.size() == 0;
   }
 
-  // removes and returns the head of the list
+  /**
+   * removes the item from the top of the stack.
+   * @return the item removed.
+   */
   public T remove() {
     return contents.removeFromHead();
   }
